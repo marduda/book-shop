@@ -8,6 +8,71 @@
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
+    <div class="bg-image"></div>
+    <header>
+      <nav>
+        <a href="../../index.html"><h1>Book Store</h1></a>
+      </nav>
+    </header>
+    <form id="form-order" action="" method="post">
+      <h2>Delivery details</h2>
+      <div class="form-item">
+        <label for="input-name">Name:</label>
+        <input id="input-name" name="input-name" type="text" placeholder="name" required>
+      </div>
+      <div class="form-item">
+        <label for="input-surname">Surname:</label>
+        <input id="input-surname" name="input-surname" type="text" minlength="5" placeholder="surname" pattern="[A-Za-z]+" required>
+      </div>
+      <div class="form-item">
+        <label for="date-delivery">Delivery date:</label>
+        <input id="date-delivery" type="date">
+      </div>
+      <div class="form-item">
+        <label for="input-street">Street:</label>
+        <input id="input-street" name="input-street" type="text" placeholder="street" required>
+      </div>
+      <div class="form-item">
+        <label for="input-house-num">House number:</label>
+        <input id="input-house-num" name="input-house-num" type="number" placeholder="house number" required>
+      </div>
+      <div class="form-item">
+        <label for="input-flat-num">Flat number:</label>
+        <input id="input-flat-num" name="input-flat-num" type="tel" placeholder="flat number" required>
+      </div>
+      <div class="form-item">
+        <fieldset id="payments">
+          <legend>Payment method</legend>
+          <div class="fieldset-item">
+            <label for="radio-payment-cash">Cash</label>
+            <input id="radio-payment-cash" name="input-payment" value="Cash" type="radio" checked>
+          </div>
+          <div class="fieldset-item">
+            <label for="radio-payment-card">Card</label>
+            <input id="radio-payment-card" name="input-payment" value="Card" type="radio" >
+          </div>
+        </fieldset>
+      </div>
+      <div id="gifts" class="form-group">
+        <div class="form-checkbox">
+          <input type="checkbox" id="checkbox-pack" name="input-gifts" value="pack">
+          <label for="checkbox-pack">pack as a gift</label>
+        </div>
+        <div class="form-checkbox">
+          <input type="checkbox" id="checkbox-postcard" name="input-gifts" value="postcard">
+          <label for="checkbox-postcard">add postcard</label>
+        </div>
+        <div class="form-checkbox">
+          <input type="checkbox" id="checkbox-discount" name="input-gifts" value="discount">
+          <label for="checkbox-discount">provide 2% discount to the next time</label>
+        </div>
+        <div class="form-checkbox">
+          <input type="checkbox" id="checkbox-pen-or-pencil" name="input-gifts" value="pen-or-pencil">
+          <label for="checkbox-pen-or-pencil">branded pen or pencil</label>
+        </div>
+      </div>
+        <button id="button-submit" type="submit">Order</button>
+    </form>
     <script src="./script.js"></script>
   </body>
 </html>
