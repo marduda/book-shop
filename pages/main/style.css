@@ -202,6 +202,8 @@ i:hover {
   border-radius: 15px;
   visibility: hidden;
   min-height: 50px;
+  min-width: fit-content;
+  max-width: 80%;
   background: var(--white-color-background);
   box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.6);
   z-index: 3;
@@ -214,6 +216,7 @@ i:hover {
   transition: all 0.5s ease-in-out;
   opacity: 0;
   color: black;
+  overflow-x: auto;
 }
 
 .cart-card.visible {
@@ -250,6 +253,7 @@ i:hover {
 
 span {
   align-self: flex-end;
+  color: var(--main-color);
 }
 
 .cart-card > span, p {
@@ -260,12 +264,9 @@ span {
   visibility: visible;
   opacity: 1;
   text-align: justify;
-
-
   transform: scale(100%);
 }
 
-/* TABLE */
 table {
   border-collapse: collapse;
   border: 2px solid rgb(200,200,200);
@@ -273,7 +274,6 @@ table {
   font-size: 0.8rem;
   color: black;
   margin: 20px;
-  max-width: calc(100% - 60px);
 }
 
 td, th {
@@ -292,4 +292,10 @@ td {
 
 caption {
   padding: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .cart-card {
+    right: 0;
+  }
 }
