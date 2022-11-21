@@ -192,7 +192,7 @@ const createBookCard = (author, image, title, price, description) => {
   const newAuthor = document.createElement('h3');
   newAuthor.textContent = author;
 
-  const newPrice = document.createElement('h2');
+  const newPrice = document.createElement('h3');
   newPrice.textContent = `Price: $${price}`
 
   const newReadMore = document.createElement('a');
