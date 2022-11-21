@@ -14,7 +14,7 @@ const closeReadMore = (e) => e.target.parentNode.classList.remove('visible');
 const toggleCart = (e) => e.target.nextSibling.classList.toggle('visible');
 const closeCart = (e) => e.target.parentNode.classList.remove('visible');
 const addToCart = (e) => {
-  let data = e.target.dataset;
+  let data = e.dataset ? e.dataset : e.target.dataset;
   let index = orderItems.findIndex(e => e.title === data.title);
   index === -1 ? orderItems.push(new Item(data.author, data.title, data.price)) : orderItems[index].count++;
   createCart();
@@ -28,6 +28,23 @@ const clearCart = () => {
   createCart();
 };
 const submitOrder = () => window.location.href='./pages/order/index.html';
+const dragStart = (e) => {
+  e.dataTransfer.setData('Text', e.target.id);
+  e.dataTransfer.effectAllowed = "move";
+  console.log(e.dataTransfer);
+};
+const dragOverEvent = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  e.dataTransfer.dropEffect = "move";
+}
+const dropEvent = (e) => {
+  e.preventDefault();
+  let id = e.dataTransfer.getData('Text');
+  let element = document.querySelector(`#btn-${id}`);
+  console.log(element)
+  addToCart(element);
+};
 
 const createCart = () => {
   let cartCard = document.querySelector('.cart-card');
@@ -124,7 +141,6 @@ const createCart = () => {
       updatedCard.append(closeCartBtn, table, orderButton);
       return updatedCard;
     }
-
     cartCard.replaceChildren(updateCard());
   }
 
@@ -146,6 +162,8 @@ const createSite = () => {
     let navList = document.createElement('ul');
 
     let cart = document.createElement('li');
+    cart.ondrop = dropEvent;
+    cart.ondragover = dragOverEvent;
     let cartIcon = document.createElement('i');
     cartIcon.className = 'fa fa-shopping-cart fa-2x';
     cartIcon.onclick = toggleCart;
@@ -169,10 +187,12 @@ const createSite = () => {
   document.body.append(site);
 }
 
-const createBookCard = (author, image, title, price, description) => {
+const createBookCard = (author, image, title, price, description, index) => {
   const newCard = document.createElement('div');
+  newCard.id = index;
   newCard.className = 'book-card';
   newCard.setAttribute('draggable', 'true');
+  newCard.ondragstart = dragStart;
 
   const newImageContainer = document.createElement('div');
   newImageContainer.className = 'img-container';
@@ -203,6 +223,7 @@ const createBookCard = (author, image, title, price, description) => {
   newModal.className = 'modal';
 
   const newAddToCart = document.createElement('button');
+  newAddToCart.id = `btn-${index}`;
   newAddToCart.textContent = 'Add to cart';
   newAddToCart.dataset.author = author;
   newAddToCart.dataset.title = title;
@@ -224,9 +245,9 @@ const createBookCard = (author, image, title, price, description) => {
 }
 
 const createBooks = () => {
-  for(book of storage) {
+  for(const [index, book] of storage.entries()) {
     let { author, imageLink, title, price, description } = book;
-    createBookCard(author, imageLink, title, price, description);
+    createBookCard(author, imageLink, title, price, description, index);
   }
   createCart();
 }

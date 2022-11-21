@@ -17,14 +17,7 @@
   --font-dark-color: rgb(17, 17, 17);
   --font-bright-color: rgb(230,230,230);
 
-  --green: rgb(125, 157, 146);
-  --blue: rgb(59, 91, 132);
-  --ocean: rgb(117, 167, 204);
-  --red: rgb(204, 133, 129);
-  --pink: rgb(244, 232, 234);
   --fog: rgb(237, 235, 236);
-
-
 }
 
 body {
@@ -258,7 +251,6 @@ i:hover {
 span {
   align-self: flex-end;
 }
-
 
 .cart-card > span, p {
   margin: 15px;
