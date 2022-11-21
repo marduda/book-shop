@@ -4,16 +4,12 @@
   --border-radius: 2px;
   --border-size: 2px;
   --shadow-small: 4px 4px 8px rgba(0, 0, 0, 0.6);
-
   --main-color: rgb(57, 145, 140);
   --main-color-bright: #25bcb5;
-
   --main-color-background: rgba(255, 255, 255, 0.6);
-
   --error-color: rgba(255, 0, 0, 1);
   --error-background: rgba(255, 0, 0, 0.2);
   --valid-background: rgba(57, 145, 141, 0.4);
-
   --font-dark-color: rgb(17, 17, 17);
   --font-bright-color: rgb(230,230,230);
 }
@@ -245,37 +241,10 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}
-
-table {
-  border-collapse: collapse;
-  border: 2px solid var(--main-color);
-  letter-spacing: 1px;
-  font-size: 1rem;
-  color: black;
-  margin: 20px;
-  width: 400px;
-  background: var(--main-color-background);
-}
-
-td, th {
-  border: 1px solid var(--valid-background);
-  padding: 20px;
+  text-transform: uppercase;
   text-align: center;
-  width: 50%;
-  text-transform: capitalize;
 }
 
-th {
-  color: var(--font-bright-color);
-  background-color: var(--main-color);
-  text-align: right;
-}
-
-td {
-  background: var(--main-color-background);
-}
-
-tr {
-  display: flex;
+.summary > h2 {
+  padding: 5px 15px;
 }

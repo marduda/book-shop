@@ -15,33 +15,47 @@ const submitForm = (e) => {
   e.preventDefault();
   e.stopPropagation();
 
-  let fragment = document.createDocumentFragment();
-  const summary = document.createElement('div');
-  summary.className = 'summary';
-  fragment.append(summary);
-
-  let title = document.createElement('h2');
-  title.textContent = 'Summary';
-  let table = document.createElement('table');
-  let button = document.createElement('button');
-  button.textContent = 'Go back';
-  button.onclick = navMainPage;
-  summary.append(title, table, button);
-
   const form = document.getElementById('form-order');
   const formData = new FormData(form);
+  const formDataObj = {};
 
-  for ( const [key, value] of formData ) {
-    let tr = document.createElement('tr');
-    let inputName = document.createElement('th');
-    let inputValue = document.createElement('td');
+  for( let [key, value] of formData) {
+    key = key.slice(6).split('-').join('-');
+    key in formDataObj ? formDataObj[key] = [formDataObj[key], value] : formDataObj[key] =  value;
+  };
 
-    inputName.textContent = key.slice(5).split('-').join(' ').replace('num', 'number');
-    inputValue.textContent = value;
+  let fragment = document.createDocumentFragment();
 
-    table.append(tr);
-    tr.append(inputName, inputValue);
-  }
+  const createSummary = () => {
+    const summary = document.createElement('div');
+    summary.className = 'summary';
+
+    let title = document.createElement('h2');
+    title.textContent = 'The order created';
+
+    let button = document.createElement('button');
+    button.textContent = 'Go back';
+    button.onclick = navMainPage;
+
+    let address = document.createElement('h2');
+    address.textContent = `The delivery address is ${formDataObj['street']} street house ${formDataObj['house-num']} flat ${formDataObj['flat-num']}`;
+    let personalData = document.createElement('h2');
+    personalData.textContent = `Customer ${formDataObj['name']} ${formDataObj['surname']}`;
+
+    let gifts = document.createElement('h3');
+    if( Array.isArray(formDataObj['gifts'])){
+      gifts.textContent = `Selected gifts: ${formDataObj['gifts'][0]}, ${formDataObj['gifts'][1]}`;
+    } else {
+      if (formDataObj['gifts']) {
+        gifts.textContent = `Selected gift: ${formDataObj['gifts']}`;
+      };
+    };
+
+    summary.append(title, address, personalData, gifts, button);
+    fragment.append(summary);
+  };
+
+  createSummary(formData);
   form.replaceWith(fragment);
 };
 
