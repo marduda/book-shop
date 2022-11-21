@@ -179,7 +179,7 @@ const createBookCard = (author, image, title, price, description) => {
   newCard.appendChild(newImageContainer);
 
   const newImage = document.createElement('img');
-  newImage.src = `../../assets/images/${image}`;
+  newImage.src = `./assets/images/${image}`;
   newImageContainer.appendChild(newImage);
 
   const newDetails = document.createElement('div');
